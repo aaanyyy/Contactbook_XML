@@ -45,6 +45,12 @@ public class ContactView {
         System.out.println("Please enter a name or first letters of it");
         return sc.nextLine();
     }
+    public String getFileName()
+    {
+        System.out.println("Please enter a file name");
+        return sc.nextLine();
+    }
+
     public Integer getContactIdToDelete()
     {
         System.out.println("Please enter id of a contact you want to delete");
