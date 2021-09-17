@@ -27,6 +27,7 @@ public abstract class InFileContactService implements ContactService {
     abstract List<Contact> load();
 
     abstract void save(List<Contact> contactList);
+
     public void saveToFile(String fileName)
     {
         file = new File(fileName);

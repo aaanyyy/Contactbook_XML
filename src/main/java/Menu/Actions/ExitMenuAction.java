@@ -1,10 +1,15 @@
 package Menu.Actions;
 
+import Services.ContactService;
+import UI.ContactView;
+
 public class ExitMenuAction implements MenuAction {
 
-    @Override
-    public void doAction() {
 
+    @Override
+    public ContactService doAction(ContactService contactService, ContactView contactView) {
+
+        return contactService;
     }
 
     @Override
@@ -16,4 +21,5 @@ public class ExitMenuAction implements MenuAction {
     public boolean closeAfter() {
         return true;
     }
+
 }

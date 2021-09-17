@@ -2,22 +2,22 @@ package Menu.Actions;
 
 import Services.ContactService;
 import UI.ContactView;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
-public class AddContactMenuAction implements MenuAction{
 
-    private final ContactService contactService;
-    private final ContactView contactView;
+public class AddContactMenuAction implements MenuAction {
+
 
     @Override
-    public void doAction() {
+    public ContactService doAction(ContactService contactService, ContactView contactView) {
         contactService.add(contactView.readContact());
 
+
+        return contactService;
     }
 
     @Override
     public String getName() {
         return "Add a contact";
     }
+
 }

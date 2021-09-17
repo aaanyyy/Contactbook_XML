@@ -3,22 +3,18 @@ package Menu.Actions;
 import Models.Contact;
 import Services.ContactService;
 import UI.ContactView;
-import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
-@RequiredArgsConstructor
-public class ShowInCapitalMenuAction implements MenuAction{
+
+public class ShowInCapitalMenuAction implements MenuAction {
 
 
-        private final ContactService contactService;
-        private final ContactView contactView;
-
-        @Override
-        public void doAction() {
-            List<Contact> Contacts=contactService.capitalizeName();
+    @Override
+        public ContactService doAction(ContactService contactService, ContactView contactView) {
+            List<Contact> Contacts= contactService.capitalizeName();
             contactView.showContacts(Contacts);
-
+            return contactService;
         }
 
         @Override

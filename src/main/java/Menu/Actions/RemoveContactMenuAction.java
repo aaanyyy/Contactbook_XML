@@ -2,19 +2,15 @@ package Menu.Actions;
 
 import Services.ContactService;
 import UI.ContactView;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
-public class RemoveContactMenuAction implements MenuAction{
 
-    private final ContactService contactService;
-    private final ContactView contactView;
+public class RemoveContactMenuAction implements MenuAction {
 
     @Override
-    public void doAction() {
+    public ContactService doAction(ContactService contactService, ContactView contactView) {
         contactService.remove(contactView.getContactIdToDelete());
 
-
+        return contactService;
     }
 
     @Override

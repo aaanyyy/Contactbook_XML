@@ -5,7 +5,7 @@ import Menu.Menu;
 import Models.Contact;
 import Services.BinaryFileContactService;
 import Services.ContactService;
-import Services.InMemoryContactService;
+import Services.CsvFileContactService;
 import UI.ContactView;
 
 import java.util.ArrayList;
@@ -25,16 +25,19 @@ public class Main {
         contactService.add(C3);
         ContactView contactView=new ContactView(sc);
         List<MenuAction> Actions=new ArrayList<>();
-        Actions.add(new AddContactMenuAction(contactService,contactView));
-        Actions.add(new ReadContactsFromFileMenuAction(contactService,contactView));
-        Actions.add(new ShowContactsMenuAction(contactService,contactView));
-        Actions.add(new SaveContactsMenuAction(contactService,contactView));
-        Actions.add(new FindContactsMenuAction(contactService,contactView));
-        Actions.add(new RemoveContactMenuAction(contactService,contactView));
-        Actions.add(new ShowInCapitalMenuAction(contactService,contactView));
-        Actions.add(new GetNamesMenuAction(contactService,contactView));
+
+        Actions.add(new ReadFromBinaryMenuAction());
+        Actions.add(new ReadFromCsvMenuAction());
+        Actions.add(new ShowContactsMenuAction());
+        Actions.add(new SaveToBinaryMenuAction());
+        Actions.add(new SaveToCsvMenuAction());
+        Actions.add(new AddContactMenuAction());
+        //Actions.add(new FindContactsMenuAction());
+        Actions.add(new RemoveContactMenuAction());
+        //Actions.add(new ShowInCapitalMenuAction());
+        //Actions.add(new GetNamesMenuAction());
         Actions.add(new ExitMenuAction());
-        Menu menu=new Menu(Actions,sc);
+        Menu menu=new Menu(Actions,sc,contactService,contactView);
         menu.run();
 
     }

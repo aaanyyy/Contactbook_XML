@@ -1,15 +1,26 @@
 package Menu;
 
 import Menu.Actions.MenuAction;
-import lombok.RequiredArgsConstructor;
+import Services.ContactService;
+import UI.ContactView;
 
 import java.util.List;
 import java.util.Scanner;
 
-@RequiredArgsConstructor
+
 public class Menu {
     private final List<MenuAction> actions;
     private final Scanner sc;
+    private ContactService contactService;
+    private final ContactView contactView;
+
+    public Menu(List<MenuAction> actions, Scanner sc, ContactService contactService, ContactView contactView) {
+        this.actions = actions;
+        this.sc = sc;
+        this.contactService = contactService;
+        this.contactView = contactView;
+    }
+
     public void show()
     {
         System.out.println("Please enter your choice:");
@@ -31,7 +42,8 @@ public class Menu {
             }
             if(actions.get(actionId).closeAfter())
                 break;
-            actions.get(actionId).doAction();
+            contactService=actions.get(actionId).doAction(contactService,contactView);
+
 
         }
     }

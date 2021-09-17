@@ -3,25 +3,26 @@ package Menu.Actions;
 import Models.Contact;
 import Services.ContactService;
 import UI.ContactView;
-import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
-@RequiredArgsConstructor
-public class FindContactsMenuAction implements MenuAction{
 
-    private final ContactService contactService;
-    private final ContactView contactView;
+public class FindContactsMenuAction implements MenuAction {
+
+
 
     @Override
-    public void doAction() {
-        String stringToFind=contactView.getStringToSearch();
-        List<Contact> contacts=contactService.search(stringToFind);
+    public ContactService doAction(ContactService contactService, ContactView contactView) {
+        String stringToFind= contactView.getStringToSearch();
+        List<Contact> contacts= contactService.search(stringToFind);
         contactView.showContacts(contacts);
+
+        return contactService;
     }
 
     @Override
     public String getName() {
         return "Find a contact by a name (filter example)";
     }
+
 }

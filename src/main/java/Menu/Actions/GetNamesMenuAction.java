@@ -2,22 +2,21 @@ package Menu.Actions;
 
 import Services.ContactService;
 import UI.ContactView;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
-public class GetNamesMenuAction implements MenuAction{
-private final ContactService contactService;
-private final ContactView contactView;
+
+public class GetNamesMenuAction implements MenuAction {
+
 
     @Override
-    public void doAction() {
-        String out =contactService.getAllNames();
+    public ContactService doAction(ContactService contactService, ContactView contactView) {
+        String out = contactService.getAllNames();
         contactView.showAllNames(out);
-
+        return contactService;
     }
 
     @Override
     public String getName() {
         return "Show all names (reduce example)";
     }
+
 }
