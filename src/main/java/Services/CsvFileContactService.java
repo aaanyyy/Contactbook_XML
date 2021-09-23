@@ -59,13 +59,8 @@ public class CsvFileContactService extends InFileContactService {
 
         try (OutputStream os = getOutputStream()){
             PrintWriter pw=new PrintWriter(os);
-            for (Contact contact : contactList) {
-                String str=contact.getId()+";"+contact.getName()+";"+contact.getPhone()+"\n";
-                os.write(str.getBytes());
-                //pw.printf("%d;%s;%s\n",contact.getId(),contact.getName(),contact.getPhone());
-            }
-            //contactList.stream().forEach(contact->pw.printf("%d;%s;%s\n",contact.getId(),contact.getName(),contact.getPhone()));
-            os.flush();
+            contactList.stream().forEach(contact->pw.printf("%d;%s;%s\n",contact.getId(),contact.getName(),contact.getPhone()));
+            pw.close();
             cash=contactList;
 
         } catch (IOException e) {

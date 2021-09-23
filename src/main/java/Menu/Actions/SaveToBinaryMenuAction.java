@@ -2,6 +2,7 @@ package Menu.Actions;
 
 import Services.BinaryFileContactService;
 import Services.ContactService;
+import Services.InFileContactService;
 import UI.ContactView;
 
 
@@ -17,7 +18,7 @@ public class SaveToBinaryMenuAction implements MenuAction {
 
 
 
-        ((BinaryFileContactService) contactService).saveToFile(fileName);
+        ((InFileContactService) contactService).saveToFile(fileName);
         return contactService;
 
     }

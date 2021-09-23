@@ -2,6 +2,7 @@ package Services;
 
 import Models.Contact;
 import Util.ListUtils;
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -34,7 +35,13 @@ public class JsonFileContactService extends InFileContactService {
             } catch (EOFException e) {
                 cash = new ArrayList<>();
                 return cash;
-            } catch (IOException e) {
+            }
+            catch (JsonParseException e)
+            {
+                System.out.println("Cannot parse the file");
+                return cash;
+            }
+            catch (IOException e) {
                 // e.printStackTrace();
                 throw new RuntimeException("IO Exception or Class not found in load function");
 

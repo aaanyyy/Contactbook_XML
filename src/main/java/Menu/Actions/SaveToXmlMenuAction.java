@@ -1,19 +1,23 @@
 package Menu.Actions;
 
+import Services.BinaryFileContactService;
 import Services.ContactService;
-import Services.CsvFileContactService;
 import Services.InFileContactService;
+import Services.XmlFileContactService;
 import UI.ContactView;
 
 
-public class SaveToCsvMenuAction implements MenuAction {
+public class SaveToXmlMenuAction implements MenuAction {
 
 
     @Override
     public ContactService doAction(ContactService contactService, ContactView contactView) {
         String fileName= contactView.getFileName();
-        if(!(contactService instanceof CsvFileContactService))
-            contactService =new CsvFileContactService(contactService.getAll(),fileName);
+        if(!(contactService instanceof XmlFileContactService))
+
+        contactService =new XmlFileContactService(contactService.getAll(),fileName);
+
+
 
         ((InFileContactService) contactService).saveToFile(fileName);
         return contactService;
@@ -22,6 +26,6 @@ public class SaveToCsvMenuAction implements MenuAction {
 
     @Override
     public String getName() {
-        return "Save contacts to a CSV file";
+        return "Save contacts to a XML file";
     }
 }

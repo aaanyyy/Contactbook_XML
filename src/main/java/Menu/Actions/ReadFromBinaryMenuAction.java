@@ -3,6 +3,7 @@ package Menu.Actions;
 import Models.Contact;
 import Services.BinaryFileContactService;
 import Services.ContactService;
+import Services.InFileContactService;
 import UI.ContactView;
 
 import java.util.List;
@@ -16,7 +17,7 @@ class ReadFromBinaryMenuAction implements MenuAction {
     public ContactService doAction(ContactService contactService, ContactView contactView) {
         String fileName= contactView.getFileName();
         contactService =new BinaryFileContactService();
-        ((BinaryFileContactService) contactService).loadFromFile(fileName);
+        ((InFileContactService) contactService).loadFromFile(fileName);
         List<Contact>Contacts= contactService.getAll();
         contactView.showContacts(Contacts);
 

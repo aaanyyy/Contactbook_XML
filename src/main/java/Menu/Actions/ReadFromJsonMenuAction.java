@@ -1,22 +1,23 @@
 package Menu.Actions;
 
 import Models.Contact;
+import Services.BinaryFileContactService;
 import Services.ContactService;
-import Services.CsvFileContactService;
 import Services.InFileContactService;
+import Services.JsonFileContactService;
 import UI.ContactView;
 
 import java.util.List;
 
 
 public
-class ReadFromCsvMenuAction implements MenuAction {
+class ReadFromJsonMenuAction implements MenuAction {
 
 
     @Override
     public ContactService doAction(ContactService contactService, ContactView contactView) {
         String fileName= contactView.getFileName();
-        contactService =new CsvFileContactService();
+        contactService =new JsonFileContactService();
         ((InFileContactService) contactService).loadFromFile(fileName);
         List<Contact>Contacts= contactService.getAll();
         contactView.showContacts(Contacts);
@@ -26,6 +27,6 @@ class ReadFromCsvMenuAction implements MenuAction {
 
     @Override
     public String getName() {
-        return "Load contacts from a CSV file";
+        return "Load contacts from a JSON file";
     }
 }

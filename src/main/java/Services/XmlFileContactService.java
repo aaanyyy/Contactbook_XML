@@ -18,7 +18,11 @@ import java.util.List;
 import java.util.Locale;
 
 @RequiredArgsConstructor
-public class XMLContactService extends InFileContactService {
+public class XmlFileContactService extends InFileContactService {
+
+    public XmlFileContactService(List<Contact> contacts, String s) {
+        super(contacts,s);
+    }
 
     @Override
     List<Contact> load() {
@@ -31,7 +35,12 @@ public class XMLContactService extends InFileContactService {
             try(InputStream inputStream=getInputStream()) {
 
                 cash = xmlMapper.readValue(inputStream, new TypeReference<ArrayList<Contact>>() {});
-            } catch (IOException e) {
+            }catch (JsonParseException e)
+            {
+                System.out.println("Cannot parse the file");
+                return cash;
+            }
+            catch (IOException e) {
                 e.printStackTrace();
             }
         }
